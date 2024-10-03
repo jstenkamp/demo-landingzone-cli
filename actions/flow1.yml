@@ -21,4 +21,14 @@ jobs:
         with:
           service-account-credentials: ${{ secrets.MONDOO_CONFIG_BASE64 }}
           path: "./"
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          cli_config_credentials_token: ${{ secrets.TFC_TOKEN }}
+      - name: TF init 
+        run: terraform init 
+      - id: plan
+        run: terraform plan -out=./tf_plan.out
+      - name: take a look
+        run: pwd && ls -la
+
           
