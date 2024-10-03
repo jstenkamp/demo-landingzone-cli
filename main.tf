@@ -19,6 +19,28 @@ resource "github_repository" "demo" {
   auto_init = true
 }
 
+resource "github_repository_file" "terraform" {
+  repository          = github_repository.demo.name
+  branch              = "main"
+  file                = "terraform.tf"
+  content             = <<-EOF
+  terraform { 
+  cloud { 
+    
+    organization = "Jstenkamp" 
+
+    workspaces { 
+      name = "tfc-mondoo-cli" 
+      } 
+    } 
+  }
+  EOF
+  commit_message      = "Managed by Terraform"
+  commit_author       = "Terraform User"
+  commit_email        = "terraform@example.com"
+  overwrite_on_create = true
+}
+
 #Secrets
 
 resource "github_actions_secret" "tfc_token" {
