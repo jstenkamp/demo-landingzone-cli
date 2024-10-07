@@ -13,8 +13,8 @@ provider "github" {
 #Repo
 
 resource "github_repository" "demo" {
-  name        = "tfc-mondoo-cli"
-  description = "LZ for mondoo-cli"
+  name        = var.tfc_workspace
+  description = "LZ for ${var.tfc_workspace}"
   visibility = "public"
   auto_init = true
 }
@@ -27,7 +27,7 @@ resource "github_repository_file" "terraform" {
   terraform { 
   cloud { 
     
-    organization = "Jstenkamp" 
+    organization = var.tfc_org 
 
     workspaces { 
       name = "tfc-mondoo-cli" 
@@ -36,8 +36,8 @@ resource "github_repository_file" "terraform" {
   }
   EOF
   commit_message      = "Managed by Terraform"
-  commit_author       = "Terraform User"
-  commit_email        = "terraform@example.com"
+  commit_author       = "Landingzone Admin"
+  commit_email        = "lz@example.com"
   overwrite_on_create = true
 }
 
@@ -95,7 +95,7 @@ resource "github_repository_file" "workflow" {
 
 
 resource "tfe_workspace" "demo" {
-  name         = "tfc-mondoo-cli"
+  name         = var.tfc_workspace
   organization = var.tfc_org
 }
 
