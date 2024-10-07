@@ -37,3 +37,8 @@ variable "windows_password" {
 variable "win_reg_token" {
   
 }
+
+
+variable "linux_reg_token" {
+  
+}

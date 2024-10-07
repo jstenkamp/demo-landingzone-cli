@@ -119,3 +119,11 @@ resource "tfe_variable" "win_reg_token" {
   workspace_id = tfe_workspace.demo.id
   description  = "Windows Registration Token for Mondoo"
 }
+
+resource "tfe_variable" "linux_reg_token" {
+  key          = "linux_reg_token"
+  value        = var.linux_reg_token
+  category     = "terraform"
+  workspace_id = tfe_workspace.demo.id
+  description  = "Linux Registration Token for Mondoo"
+}
