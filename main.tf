@@ -27,10 +27,10 @@ resource "github_repository_file" "terraform" {
   terraform { 
   cloud { 
     
-    organization = var.tfc_org 
+    organization = "${var.tfc_org}" 
 
     workspaces { 
-      name = "tfc-mondoo-cli" 
+      name = "${var.tfc_workspace}" 
       } 
     } 
   }
