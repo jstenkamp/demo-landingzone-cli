@@ -28,7 +28,7 @@ jobs:
       - name: TF init 
         run: terraform init 
       - id: plan
-        run: |
+        run: | 
           terraform plan -no-color -out plan.tfplan
           terraform show -json plan.tfplan >> plan.json
         continue-on-error: true
@@ -40,5 +40,10 @@ jobs:
         uses: mondoohq/actions/terraform-plan@main
         with:
           service-account-credentials: ${{ secrets.MONDOO_CONFIG_BASE64 }}
+          score-threshold: 80
           path: "./"
           plan-file: plan.json
+
+      - name: Terraform APPPLY
+        run: |
+          terraform apply plan.tfplan

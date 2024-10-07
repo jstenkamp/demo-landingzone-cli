@@ -6,6 +6,10 @@ variable "tfc_token" {
   
 }
 
+# variable "mondoo_service_account" {
+  
+# }
+
 variable "github_token" {
   
 }

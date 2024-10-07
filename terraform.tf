@@ -8,5 +8,9 @@ terraform {
     tfe = {
         version = "~> 0.58.1"
     }
+    mondoo = {
+      source  = "mondoohq/mondoo"
+      version = ">= 0.17.0"
+    }
   }
 }
