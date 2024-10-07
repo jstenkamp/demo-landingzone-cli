@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: where am I
         run: pwd && ls -la
-      - name: Scan with cnspec
+      - name: Scan HCL with cnspec
         uses: mondoohq/actions/terraform-hcl@main
         with:
           service-account-credentials: ${{ secrets.MONDOO_CONFIG_BASE64 }}
@@ -31,5 +31,9 @@ jobs:
         run: terraform plan -no-color -out tf_plan
       - name: take a look
         run: pwd && ls -la
+      #new
+      #- uses: mondoohq/actions/terraform-plan@main
+      #  parameter
+      # terraform apply mit in_file=tf_plan
 
           

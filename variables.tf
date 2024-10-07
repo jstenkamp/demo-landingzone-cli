@@ -10,6 +10,10 @@ variable "github_token" {
   
 }
 
+variable "tfc_workspace" {
+  default = "tfc-mondoo-cli"
+}
+
 variable "tfc_org" {
   default = "jstenkamp"
 }

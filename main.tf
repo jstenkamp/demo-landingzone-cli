@@ -61,6 +61,19 @@ resource "github_actions_secret" "mondoo_token" {
   plaintext_value  = var.md_cicd_token
 }
 
+#Variables
+
+resource "github_actions_variable" "workspace" {
+  repository       = github_repository.demo.name
+  variable_name    = "TFC_WORKSPACE"
+  value            = var.tfc_workspace
+}
+
+resource "github_actions_variable" "org" {
+  repository       = github_repository.demo.name
+  variable_name    = "TFC_ORG"
+  value            = var.tfc_org
+}
 
 #Workflow
 
@@ -71,8 +84,8 @@ resource "github_repository_file" "workflow" {
   file                = ".github/workflows/flow1.yml"
   content             = file("${path.root}/actions/flow1.yml")
   commit_message      = "Managed by Terraform"
-  commit_author       = "Terraform User"
-  commit_email        = "terraform@example.com"
+  commit_author       = "Landinzone Admin"
+  commit_email        = "lz@example.com"
   overwrite_on_create = true
 }
 
