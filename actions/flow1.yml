@@ -28,12 +28,17 @@ jobs:
       - name: TF init 
         run: terraform init 
       - id: plan
-        run: terraform plan -no-color -out tf_plan
+        run: |
+          terraform plan -no-color -out plan.tfplan
+          terraform show -json plan.tfplan >> plan.json
+        continue-on-error: true
+
       - name: take a look
         run: pwd && ls -la
-      #new
-      #- uses: mondoohq/actions/terraform-plan@main
-      #  parameter
-      # terraform apply mit in_file=tf_plan
-
-          
+      
+      - name: Scan TF Plan with cnspec
+        uses: mondoohq/actions/terraform-plan@main
+        with:
+          service-account-credentials: ${{ secrets.MONDOO_CONFIG_BASE64 }}
+          path: "./"
+          plan-file: plan.json
